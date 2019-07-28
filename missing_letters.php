@@ -1,29 +1,18 @@
 <?php
-
-//Function based on the generators
-function getMissingLettersGenerator(string $str) : Generator
+//search letters throw standart php functions
+function getMissingLetters(string $str) : string
 {
     $alphabet = "abcdefghijklmnopqrstuvwxyz";
-    $alphabetArray = str_split($alphabet);
+    $strArray = str_split($alphabet);
+    $ret = "";
 
-    foreach ($alphabetArray as $letter)
+    foreach ($strArray as $letter)
     {
         $pos      = strripos($str, $letter);
         if ($pos === false){
-            yield $letter;
+            $ret .= $letter;
         }
     }
+    return $ret;
 }
 
-
-function getMissingLetters(string $input) : string
-{
-    $expectedResult =  getMissingLettersGenerator($input);
-    $missingLetters = "";
-
-    foreach ($expectedResult as $value)
-    {
-        $missingLetters = $missingLetters . $value;
-    }
-    return $missingLetters;
-}
